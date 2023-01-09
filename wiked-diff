@@ -75,7 +75,7 @@ if __name__ == "__main__":
             help="Selects a formatter for diff output (default: %(default)s)")
     _formatter.add_argument("--show-block-moves", dest="showBlockMoves", type=str2bool, default=True,
             help="Enable block move layout with highlighted blocks and marks at the original positions (default: %(default)s)")
-    _formatter.add_argument("--colored-blocks", dest="coloredBlocks", type=str2bool, default=True,
+    _formatter.add_argument("--colored-blocks", dest="coloredBlocks", type=str2bool, default=False,
             help="Display blocks in differing colors (rainbow color scheme) (default: %(default)s")
 
     argparser.add_argument("old_file", type=argparse.FileType("r"),

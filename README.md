@@ -59,7 +59,18 @@ Notable differences between the Python port and the original JavaScript version:
 
 ## Installation
 
+original lahwaacz verion:
+
     pip install git+git://github.com/lahwaacz/python-wikeddiff.git
+
+this fork 
+
+    pip install git+git://github.com/awillats/python-wikeddiff.git
+
+or via https
+
+    pip install git+https://github.com/awillats/python-wikeddiff.git
+
 
 ## License
 
