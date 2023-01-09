@@ -45,6 +45,9 @@ if __name__ == "__main__":
             help="Maximum number of rejection cycles (default: %(default)s)")
     _diff.add_argument("--block-min-length", dest="blockMinLength", type=int,
             help="Reject blocks if shorter than this number of real words (default: %(default)s)")
+    # NOTE: new
+    _diff.add_argument("--ignore-block-uniqueness", dest="ignoreBlockUniqueness", type=str2bool,
+            help="Ignore whether block is unique when keeping short blocks. True reduces false postiives (default: %(default)s")
     _diff.add_argument("--strip-trailing-newline", dest="stripTrailingNewline", type=str2bool,
             help="Strip trailing newline off of texts (default: %(default)s)")
     _diff.add_argument("--debug", dest="debug", type=str2bool,
@@ -67,6 +70,7 @@ if __name__ == "__main__":
         'debug'                : False,
         'timer'                : False,
         'unitTesting'          : False,
+        'ignoreBlockUniqueness': False,
     }
     _diff.set_defaults(**_diff_defaults)
 
@@ -95,6 +99,9 @@ if __name__ == "__main__":
     _diff_args = dict( (k,v) for k,v in args.__dict__.items() if k in _diff_defaults )
     config.__dict__.update(_diff_args)
 
+    # # TODO: turn this into proper parsed argument
+    # config.ignoreBlockUniqueness = True;
+
     # Get diff fragments
     wd = WikEdDiff(config)
     fragments = wd.diff(args.old_file.read(), args.new_file.read())
@@ -115,8 +122,8 @@ if __name__ == "__main__":
                                       stylesheet=formatter.get_stylesheet(stylesheet_name=css_style, stylesheet_dir=css_style_dir),
                                       diff=diff_html)
 
-        print(full_html)
+        # print(full_html)
     else:
         formatter = AnsiFormatter()
         diff_ansi = formatter.format( fragments, showBlockMoves=args.showBlockMoves, coloredBlocks=args.coloredBlocks )
-        print(diff_ansi)
+        # print(diff_ansi)

@@ -1518,7 +1518,10 @@ class WikEdDiff:
             blockEnd = groups[group].blockEnd
 
             # Unlink whole group if no block is at least blockMinLength words long and unique
-            if groups[group].maxWords < self.config.blockMinLength and groups[group].unique is False:
+            # if groups[group].maxWords < self.config.blockMinLength and groups[group].unique is False:
+            # DEBUG: for now, allows dropping unique requirement for block moves
+            # TODO: debug false positive unique for short words
+            if groups[group].maxWords < self.config.blockMinLength and (self.config.ignoreBlockUniqueness or groups[group].unique is False):
                 for block in range(blockStart, blockEnd + 1):
                     if blocks[block].type == '=':
                         self.unlinkSingleBlock( blocks[block] )

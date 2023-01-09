@@ -63,6 +63,13 @@ class WikEdDiffConfig:
     ##
     blockMinLength = 3
 
+    ## NOTE: [NEW!] [experimental]
+    ## @var bool config.ignoreBlockUniqueness
+        # see diff.py L1523. prevents short but unique blocks being marked as moved
+        # setting to True potentially reduces false positive block moves
+        # setting to False allows short unique blocks to be marked as moved
+    ignoreBlockUniqueness = True
+
     ##
     ## @var bool config.stripTrailingNewline
     ##   Strip trailing newline off of texts (True)
