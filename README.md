@@ -15,6 +15,20 @@ one-to-one synced port with changes and fixes applied to both versions.
 There were no changes to the algorithm, so all credits go to the original
 author, [Cacycle](https://en.wikipedia.org/wiki/User:Cacycle).
 
+
+## awillats fork-specific notes
+This is a fork from [lahwaacz](https://github.com/lahwaacz)/[python-wikeddiff](https://github.com/lahwaacz/python-wikeddiff). 
+Credit goes to lahwaacz for writing the python port.
+My intention with this fork is to make the formatters more extensible and easier to customize.
+Specifically:
+- [ ] create stylesheet.css with hoisted variables for easier configuration of colors
+    - [ ] possibly create multiple themes
+- [ ] create something like PlainTextFormatter.py to create a git-diff-like plaintext syntax (augmented with block-move markers)
+- [ ] create something like LaTeXFormatter.py with similar syntax to [ftilmann](https://github.com/ftilmann) / [latexdiff](https://github.com/ftilmann/latexdiff)
+    - perhaps in the future these projects can be combined by making WikEdDiff available as a "diff enginge" for latexdiff
+
+Notably, this differs somewhat from the vision of python-wikeddiff as a "pure fork/port" of the original Cacyle/WikEdDiff project
+
 ## Features
 
 WikEdDiff applies a word-based algorithm that uses unique words as anchor points

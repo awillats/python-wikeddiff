@@ -1,1 +1,14 @@
+# diff outputs
 output*.html
+
+# Code tags
+tags
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+
+# Distribution / packaging
+*.egg-info/
+
+# Local TODO list
+localDev/
