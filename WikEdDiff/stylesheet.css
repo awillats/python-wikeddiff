@@ -1,3 +1,10 @@
+
+/* Style config variables*/
+:root {
+    --cssMarkLeft:   '◀'; /* block moved up from here*/
+    --cssMarkRight:  '▶'; /* block moved down here*/
+}
+
 /* Insert */
 .wikEdDiffInsert {
     font-weight: bold; background-color: #bbddff;
@@ -39,8 +46,8 @@
     font-weight: bold; background-color: #ffe49c; 
     color: #666; border-radius: 0.25em; padding: 0.2em; margin: 0 1px; 
 } 
-.wikEdDiffMarkLeft:before { content: "{cssMarkLeft}"; } 
-.wikEdDiffMarkRight:before { content: "{cssMarkRight}"; } 
+.wikEdDiffMarkLeft:before { content: var(--cssMarkLeft); } 
+.wikEdDiffMarkRight:before { content: var(--cssMarkRight); } 
 .wikEdDiffMarkLeft.wikEdDiffNoUnicode:before { content: "<"; } 
 .wikEdDiffMarkRight.wikEdDiffNoUnicode:before { content: ">"; } 
 .wikEdDiffMark { background-color: #e8e8e8; color: #666; } 
