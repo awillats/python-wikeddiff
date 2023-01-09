@@ -45,7 +45,7 @@ if __name__ == "__main__":
             help="Maximum number of rejection cycles (default: %(default)s)")
     _diff.add_argument("--block-min-length", dest="blockMinLength", type=int,
             help="Reject blocks if shorter than this number of real words (default: %(default)s)")
-    # NOTE: new
+    # NOTE: [CHANGELOG] added --ignore-block-uniquness flag
     _diff.add_argument("--ignore-block-uniqueness", dest="ignoreBlockUniqueness", type=str2bool,
             help="Ignore whether block is unique when keeping short blocks. True reduces false postiives (default: %(default)s")
     _diff.add_argument("--strip-trailing-newline", dest="stripTrailingNewline", type=str2bool,
@@ -112,7 +112,7 @@ if __name__ == "__main__":
         diff_html = formatter.format( fragments, showBlockMoves=args.showBlockMoves, coloredBlocks=args.coloredBlocks, error=wd.error )
 
         # Create standalone HTML page
-        # TODO: make stylesheet name
+        # TODO: make stylesheet into flag
         # css_style = 'stylesheet.css' 
         # css_style = 'style-w-vars.css' 
         css_style = 'red-green-blues.css' 
@@ -122,8 +122,8 @@ if __name__ == "__main__":
                                       stylesheet=formatter.get_stylesheet(stylesheet_name=css_style, stylesheet_dir=css_style_dir),
                                       diff=diff_html)
 
-        # print(full_html)
+        print(full_html)
     else:
         formatter = AnsiFormatter()
         diff_ansi = formatter.format( fragments, showBlockMoves=args.showBlockMoves, coloredBlocks=args.coloredBlocks )
-        # print(diff_ansi)
+        print(diff_ansi)
