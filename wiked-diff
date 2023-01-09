@@ -105,7 +105,15 @@ if __name__ == "__main__":
         diff_html = formatter.format( fragments, showBlockMoves=args.showBlockMoves, coloredBlocks=args.coloredBlocks, error=wd.error )
 
         # Create standalone HTML page
-        full_html = formatter.fullHtmlTemplate.format(title=args.new_file, script=formatter.javascript, stylesheet=formatter.stylesheet, diff=diff_html)
+        # TODO: make stylesheet name
+        # css_style = 'stylesheet.css' 
+        # css_style = 'style-w-vars.css' 
+        css_style = 'red-green-blues.css' 
+        css_style_dir = None;# NOTE: css currently defaults to module directory
+        full_html = formatter.fullHtmlTemplate.format(title=args.new_file,
+                                      script=formatter.javascript,
+                                      stylesheet=formatter.get_stylesheet(stylesheet_name=css_style, stylesheet_dir=css_style_dir),
+                                      diff=diff_html)
 
         print(full_html)
     else:

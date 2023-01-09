@@ -1,0 +1,149 @@
+/* RED-GREEN-BLUES theme */
+/* This stylesheet is intended to be similar to default git diff theme
+ * - uses different shades of blue for blocks if --colored-blocks==true
+ * */
+
+/* Style config variables */
+
+:root {
+    --cssMarkLeft:   '◀'; /* block moved up from here*/
+    --cssMarkRight:  '▶'; /* block moved down here*/
+
+    /* These only show up on hover over */
+    --newlineSymbol: "¶";
+    --tabSymbol:     "→";
+    --spaceSymbol:   "·";
+
+    --insertBG:      #aaffaa ;
+    --insertBlankBG: #00ff00 ;
+    --deleteBG:      #ffaaaa ;
+    --deleteBlankBG: #ff0000 ;
+
+    /* --insertBG:      #bbddff ; */
+    /* --insertBlankBG: #66bbff ; */
+    /* --deleteBG:      #ffe49c ; */
+    /* --deleteBlankBG: #ffd064 ; */
+    --movedBlockBG:  hsl(180, 20%, 85%) ; /* for --colored-blocks=false -- blue, yellow or grey? */
+
+    /* for --colored-blocks=true, cycle through colors 
+     * Want hues to be distinct from insert and delete
+     * hue 180 (cyan) -> blue -> 300 (magenta)
+     */
+    --rainbow1: hsl(180, 15%, 95%);
+    --rainbow2: hsl(200, 25%, 85%);
+    --rainbow3: hsl(220, 35%, 70%);
+    --rainbow4: hsl(235, 45%, 50%);
+    --rainbow5: hsl(250, 55%, 40%);
+    --rainbow6: hsl(265, 65%, 35%);
+    --rainbow7: hsl(285, 75%, 38%);
+    --rainbow8: hsl(300, 85%, 20%);
+}
+
+/* Insert */
+.wikEdDiffInsert {
+    font-weight: bold; background-color: var(--insertBG);
+    color: #222; border-radius: 0.25em; padding: 0.2em 1px;
+}
+.wikEdDiffInsertBlank { background-color: var(--insertBlankBG)); }
+.wikEdDiffFragment:hover .wikEdDiffInsertBlank { background-color: var(--insertBG); }
+
+/* Delete */
+.wikEdDiffDelete {
+    font-weight: bold; background-color: var(--deleteBG);
+    color: #222; border-radius: 0.25em; padding: 0.2em 1px;
+}
+.wikEdDiffDeleteBlank { background-color: var(--deleteBlankBG); }
+.wikEdDiffFragment:hover .wikEdDiffDeleteBlank { background-color: var(--deleteBG); }
+/* Block */
+.wikEdDiffBlock {
+    font-weight: bold; background-color: var(--movedBlockBG);
+    border-radius: 0.25em; padding: 0.2em 1px; margin: 0 1px;
+}
+.wikEdDiffBlock { } /* TODO: safe to delete?*/
+.wikEdDiffBlock0 { background-color: var(--movedBlockBG); }
+/* for --colored-blocks=true, cycle throug colors */
+.wikEdDiffBlock1 { background-color: var(--rainbow1); } /* --colored-blocks=true */
+.wikEdDiffBlock2 { background-color: var(--rainbow2); } 
+.wikEdDiffBlock3 { background-color: var(--rainbow3); } 
+.wikEdDiffBlock4 { background-color: var(--rainbow4); } 
+.wikEdDiffBlock5 { background-color: var(--rainbow5); } 
+.wikEdDiffBlock6 { background-color: var(--rainbow6); } 
+.wikEdDiffBlock7 { background-color: var(--rainbow7); } 
+.wikEdDiffBlock8 { background-color: var(--rainbow8); } 
+.wikEdDiffBlockHighlight {
+    background-color: #777; color: #fff; 
+    border: solid #777; border-width: 1px 0; 
+} 
+/* Mark */
+.wikEdDiffMarkLeft, .wikEdDiffMarkRight {
+    font-weight: bold; background-color: var(--movedBlockBG);  /* #ffe49c; */
+    color: #666; border-radius: 0.25em; padding: 0.2em; margin: 0 1px; 
+} 
+.wikEdDiffMarkLeft:before { content: var(--cssMarkLeft); } 
+.wikEdDiffMarkRight:before { content: var(--cssMarkRight); } 
+.wikEdDiffMarkLeft.wikEdDiffNoUnicode:before { content: "<"; } 
+.wikEdDiffMarkRight.wikEdDiffNoUnicode:before { content: ">"; } 
+
+.wikEdDiffMark { background-color: var(--movedBlockBG); color: #666; } 
+.wikEdDiffMark0 { background-color: var(--movedBlockBG); } 
+/* for --colored-blocks=true, cycle throug colors */
+/* NOTE: these are expected to be bolder than diffBlock colors */
+.wikEdDiffMark1 { background-color: var(--rainbow1); } /*#c8f880; */
+.wikEdDiffMark2 { background-color: var(--rainbow2); } /*#ffd0f0; */
+.wikEdDiffMark3 { background-color: var(--rainbow3); } /* #a0ffff; */
+.wikEdDiffMark4 { background-color: var(--rainbow4); } /* #fff860; */
+.wikEdDiffMark5 { background-color: var(--rainbow5); } /* #b0c0ff; */
+.wikEdDiffMark6 { background-color: var(--rainbow6); } /* #e0c0ff; */
+.wikEdDiffMark7 { background-color: var(--rainbow7); } /* #ffa8a8; */
+.wikEdDiffMark8 { background-color: var(--rainbow8); }  /* #98e898; */
+.wikEdDiffMarkHighlight { background-color: #777; color: #fff; } 
+/* Wrappers */
+.wikEdDiffContainer { } 
+.wikEdDiffFragment {
+    white-space: pre-wrap; background: #fff; border: #bbb solid; 
+    border-width: 1px 1px 1px 0.5em; border-radius: 0.5em; font-family: sans-serif; 
+    font-size: 88%; line-height: 1.6; box-shadow: 2px 2px 2px #ddd; padding: 1em; margin: 0; 
+} 
+.wikEdDiffNoChange {
+    background: #f0f0f0; border: 1px #bbb solid; border-radius: 0.5em; 
+    line-height: 1.6; box-shadow: 2px 2px 2px #ddd; padding: 0.5em; margin: 1em 0; 
+    text-align: center; 
+} 
+.wikEdDiffSeparator { margin-bottom: 1em; } 
+.wikEdDiffOmittedChars { } 
+/* Newline */
+.wikEdDiffNewline:before { content: var(--newlineSymbol); color: transparent; } 
+.wikEdDiffBlock:hover .wikEdDiffNewline:before { color: #aaa; } 
+.wikEdDiffBlockHighlight .wikEdDiffNewline:before { color: transparent; } 
+.wikEdDiffBlockHighlight:hover .wikEdDiffNewline:before { color: #ccc; } 
+.wikEdDiffBlockHighlight:hover .wikEdDiffInsert .wikEdDiffNewline:before, 
+.wikEdDiffInsert:hover .wikEdDiffNewline:before
+{ color: #999; } 
+.wikEdDiffBlockHighlight:hover .wikEdDiffDelete .wikEdDiffNewline:before, 
+.wikEdDiffDelete:hover .wikEdDiffNewline:before
+{ color: #aaa; } 
+/* Tab */
+.wikEdDiffTab { position: relative; } 
+.wikEdDiffTabSymbol { position: absolute; top: -0.2em; } 
+.wikEdDiffTabSymbol:before { content: var(--tabSymbol); font-size: smaller; color: #ccc; } 
+.wikEdDiffBlock .wikEdDiffTabSymbol:before { color: #aaa; } 
+.wikEdDiffBlockHighlight .wikEdDiffTabSymbol:before { color: #aaa; } 
+.wikEdDiffInsert .wikEdDiffTabSymbol:before { color: #aaa; } 
+.wikEdDiffDelete .wikEdDiffTabSymbol:before { color: #bbb; } 
+/* Space */
+.wikEdDiffSpace { position: relative; } 
+.wikEdDiffSpaceSymbol { position: absolute; top: -0.2em; left: -0.05em; } 
+.wikEdDiffSpaceSymbol:before { content: var(--spaceSymbol); color: transparent; } 
+.wikEdDiffBlock:hover .wikEdDiffSpaceSymbol:before { color: #999; } 
+.wikEdDiffBlockHighlight .wikEdDiffSpaceSymbol:before { color: transparent; } 
+.wikEdDiffBlockHighlight:hover .wikEdDiffSpaceSymbol:before { color: #ddd; } 
+.wikEdDiffBlockHighlight:hover .wikEdDiffInsert .wikEdDiffSpaceSymbol:before,
+.wikEdDiffInsert:hover .wikEdDiffSpaceSymbol:before 
+{ color: #888; } 
+.wikEdDiffBlockHighlight:hover .wikEdDiffDelete .wikEdDiffSpaceSymbol:before,
+.wikEdDiffDelete:hover .wikEdDiffSpaceSymbol:before 
+{ color: #999; } 
+/* Error */
+.wikEdDiffError .wikEdDiffFragment,
+.wikEdDiffError .wikEdDiffNoChange
+{ background: #faa; }

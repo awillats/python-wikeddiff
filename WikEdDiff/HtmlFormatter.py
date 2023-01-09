@@ -25,6 +25,7 @@ class HtmlFormatter:
         'wiked-diff-block-right-nounicode': '>',
         'wiked-diff-error': 'Error: diff not consistent with versions!'
     }
+    # TODO: connect msg options with css style
 
     # Template for standalone HTML page. This is not necessary in the JavaScript
     # version since the formatted diff is inserted directly into the page in the
@@ -52,12 +53,17 @@ class HtmlFormatter:
 
     # CSS stylesheet. In the JavaScript version it is inserted directly into the
     # page in the browser.
-    module_path = os.path.dirname(__file__)
-    stylesheet_location = os.path.join(module_path, 'stylesheet.css')
-    with open(stylesheet_location,'r') as f:
-        stylesheet = f.read();
-    
-    # Replace mark symbols (see top of stylesheet.css)
+    def get_stylesheet(self, stylesheet_name='stylesheet.css',stylesheet_dir=None):
+        # stylesheet_name = 'stylesheet.css'
+        # stylesheet_name = 'style-w-vars.css'
+        if stylesheet_dir is None: 
+            stylesheet_dir = os.path.dirname(__file__)
+
+        stylesheet_location = os.path.join(stylesheet_dir, stylesheet_name)
+        with open(stylesheet_location,'r') as f:
+            stylesheet = f.read();
+        # TODO: error handling if file doesnt exist
+        return stylesheet
 
     # JavaScript code providing additional functionality on the rendered HTML
     # page. In the JavaScript version it is inserted directly into the page in
